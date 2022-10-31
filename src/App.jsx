@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Filter from './components/Filter';
-import Form from './components/Form';
-import Numbers from './components/Numbers';
+import PersonForm from './components/PersonForm';
+import Persons from './components/Persons';
 
 
 
@@ -24,8 +24,9 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 			<Filter filterState={filterState} setFilterState={setFilterState} setShowAll={setShowAll}/>
-			<Form persons={persons} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} setPersons={setPersons}/>
-      <Numbers showAll={showAll} persons={persons} filterState={filterState} />
+			<PersonForm persons={persons} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} setPersons={setPersons}/>
+			<h2>Numbers</h2>
+      <Persons showAll={showAll} persons={persons} filterState={filterState} />
     </div>
   )
 }

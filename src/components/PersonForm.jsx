@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = ( { persons, newName, setNewName, newNumber, setNewNumber, setPersons } ) => {
+const PersonForm = ( { persons, newName, setNewName, newNumber, setNewNumber, setPersons } ) => {
 	const addPerson = (event) => {
 		event.preventDefault();
 		if(persons.map(person => person.name).includes(newName))  {
@@ -39,4 +39,4 @@ const Form = ( { persons, newName, setNewName, newNumber, setNewNumber, setPerso
 	)
 }
 
-export default Form
+export default PersonForm

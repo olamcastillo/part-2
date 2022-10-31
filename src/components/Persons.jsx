@@ -1,12 +1,11 @@
 import React from 'react'
 
-const Numbers = ( { showAll, persons, filterState } ) => {
+const Persons = ( { showAll, persons, filterState } ) => {
 	const personsToShow = showAll
 		? persons 
 		: persons.filter(person => person.name.toLowerCase().includes(filterState))
 	return (
 		<div>
-			<h2>Numbers</h2>
       <div>	
 				{personsToShow.map((person) => 
 					<p key={person.id}>
@@ -18,4 +17,4 @@ const Numbers = ( { showAll, persons, filterState } ) => {
 	)
 }
 
-export default Numbers
+export default Persons
