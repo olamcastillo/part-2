@@ -14,7 +14,6 @@ const Country = ( { country } ) => {
 					</ul>
 					<img style={{width: '40%'}} src={country.flags.svg}/>
 				</div>
-
 		</div>
 	)
 }
