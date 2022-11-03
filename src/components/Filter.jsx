@@ -6,7 +6,8 @@ const Filter = ( { filterState, setFilterState, setShowAll } ) => {
 		setFilterState(event.target.value);
 		setShowAll(true)
 		if(filterState === '') setShowAll(false);
-		
+	
+	
 	}
 	return (
 		<div>

@@ -14,6 +14,10 @@ const App = () => {
 	const [ filterState, setFilterState ] = useState('')
 	const [ showAll, setShowAll ] = useState(true)
 
+	const setFilter = (e) => {
+		setFilterState(e.toLowerCase())
+	}
+
 	useEffect(() => {
 		axios
 			.get('https://restcountries.com/v3.1/all')
@@ -25,7 +29,7 @@ const App = () => {
 		return(
 			<div>
 				<Filter filterState={filterState} setFilterState={setFilterState} setShowAll={setShowAll}/>
-				<Countries showAll={showAll} setShowAll={setShowAll} countries={countries} filterState={filterState}/>
+				<Countries showAll={showAll} setShowAll={setShowAll} countries={countries} filterState={filterState} setFilter={setFilter} />
 			</div>
 		)
 
