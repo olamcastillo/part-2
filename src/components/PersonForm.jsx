@@ -1,7 +1,7 @@
 import React from 'react'
 import personServices from '../services/personServices';
 
-const PersonForm = ( { persons, newName, setNewName, newNumber, setNewNumber, setPersons } ) => {
+const PersonForm = ( { persons, newName, setNewName, newNumber, setNewNumber, setPersons, setMessage } ) => {
 	const addPerson = (event) => {
 		event.preventDefault();
 
@@ -10,31 +10,40 @@ const PersonForm = ( { persons, newName, setNewName, newNumber, setNewNumber, se
 		const isRepeated = arrIsRepeated.filter( item => item === true)
 
 		if(isRepeated[0] === true) {
-			const idRepeated = arrIsRepeated.indexOf(isRepeated[0])
+			const id = persons[arrIsRepeated.indexOf(isRepeated[0])].id
+			const person = persons.find(person => person.id === id)
 			if(window.confirm(`'${newName}' is already added to phonebook, replace the old number with a new one`)) {
-				const persondUpdated = {...persons[idRepeated], number: newNumber}
+				const persondUpdated = {...person, number: newNumber}
 				personServices
-					.update(idRepeated + 1, persondUpdated)
+					.update(id, persondUpdated)
 					.then(returnedPerson => {
-						setPersons(persons.map(person => person.id != (idRepeated + 1) 
+						setPersons(persons.map(person => person.id != id 
 							? person
 							: returnedPerson))
 						setNewName('')
+						setMessage('changed number',returnedPerson)
+					})
+					.catch(error => {
+						setMessage('error', persondUpdated)
 					})
 			}
 		}else {
 			const personObject = {
 				name: newName,
-				id: persons.length + 1,
 				number: newNumber
 			}
+			console.log(personObject.id);
+
 			personServices
 			.create(personObject)
 			.then(returnedPerson => {
+				console.log(returnedPerson);
 				setPersons(persons.concat(returnedPerson))
 				setNewName('')
+				setMessage('person added',returnedPerson)
 			})
 		}
+			
 
 	}
 
